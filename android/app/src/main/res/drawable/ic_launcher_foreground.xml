@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Heart symbol representing health -->
+    <path
+        android:pathData="M54,35 C50,31 42,31 38,35 C34,39 34,47 38,51 L54,67 L70,51 C74,47 74,39 70,35 C66,31 58,31 54,35 Z"
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.9"/>
+    <!-- Data bars representing analytics -->
+    <rect
+        android:width="16dp"
+        android:height="2dp"
+        android:fillColor="#F59E0B"
+        android:translateX="30"
+        android:translateY="75"/>
+    <rect
+        android:width="24dp"
+        android:height="2dp"
+        android:fillColor="#F59E0B"
+        android:translateX="30"
+        android:translateY="79"/>
+    <rect
+        android:width="20dp"
+        android:height="2dp"
+        android:fillColor="#F59E0B"
+        android:translateX="30"
+        android:translateY="83"/>
+    <!-- Intelligence spark -->
+    <circle
+        android:radius="3dp"
+        android:fillColor="#06B6D4"
+        android:translateX="75"
+        android:translateY="30"/>
+</vector>

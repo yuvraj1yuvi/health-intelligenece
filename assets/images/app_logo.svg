@@ -1,0 +1,28 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <circle cx="256" cy="256" r="240" fill="#10B981" fill-opacity="0.1"/>
+  <circle cx="256" cy="256" r="220" fill="#10B981" fill-opacity="0.05"/>
+
+  <!-- Heart symbol representing health -->
+  <path d="M256 180c-8-8-20-12-32-12s-24 4-32 12c-16 16-16 42 0 58l32 32 32-32c16-16 16-42 0-58z" fill="#10B981"/>
+
+  <!-- Data/analytics lines representing intelligence -->
+  <rect x="160" y="320" width="80" height="4" rx="2" fill="#F59E0B"/>
+  <rect x="160" y="340" width="120" height="4" rx="2" fill="#F59E0B"/>
+  <rect x="160" y="360" width="100" height="4" rx="2" fill="#F59E0B"/>
+  <rect x="160" y="380" width="140" height="4" rx="2" fill="#F59E0B"/>
+
+  <!-- Correlation dots -->
+  <circle cx="180" y="330" r="3" fill="#EC4899"/>
+  <circle cx="200" y="350" r="3" fill="#EC4899"/>
+  <circle cx="220" y="370" r="3" fill="#EC4899"/>
+  <circle cx="240" y="390" r="3" fill="#EC4899"/>
+
+  <!-- Connecting lines for correlations -->
+  <path d="M180 330 L200 350 L220 370 L240 390" stroke="#06B6D4" stroke-width="2" stroke-linecap="round" stroke-dasharray="2 2"/>
+
+  <!-- Brain/insights symbol -->
+  <path d="M320 280c0-10 8-18 18-18h20c10 0 18 8 18 18v20c0 10-8 18-18 18h-20c-10 0-18-8-18-18v-20z" fill="#10B981"/>
+  <path d="M380 300c10 0 18-8 18-18v-20c0-10-8-18-18-18h-20c-10 0-18 8-18 18v20c0 10 8 18 18 18h20z" fill="#10B981"/>
+  <path d="M350 320c0 10-8 18-18 18h-20c-10 0-18-8-18-18v-20c0-10 8-18 18-18h20c10 0 18 8 18 18v20z" fill="#10B981"/>
+</svg>
