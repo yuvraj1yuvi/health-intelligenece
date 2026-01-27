@@ -220,13 +220,7 @@ class _GoalsScreenState extends State<GoalsScreen> {
                 Icons.healing,
                 () => _createQuickGoal('symptom_reduction', 'Reduce Headache Frequency', 'Keep headache levels below 2 on average', {'symptom': 'headache', 'targetLevel': 2}),
               ),
-              const Divider(height: 1),
-              _buildQuickGoalTile(
-                '30 Minutes Daily Exercise',
-                'Exercise for at least 30 minutes daily',
-                Icons.fitness_center,
-                () => _createQuickGoal('exercise', '30 Minutes Daily Exercise', 'Exercise for at least 30 minutes daily', {'minutes': 30}),
-              ),
+
               const Divider(height: 1),
               _buildQuickGoalTile(
                 '8 Hours Sleep',

@@ -20,35 +20,39 @@ class MoodPicker extends StatelessWidget {
       {'emoji': '😢', 'value': 5},
     ];
 
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: moods.map((mood) {
-        final isSelected = selectedMood == mood['value'];
-        return GestureDetector(
-          onTap: () => onMoodChanged(mood['value'] as int),
-          child: Container(
-            padding: const EdgeInsets.all(12),
-            decoration: BoxDecoration(
-              color: isSelected
-                  ? Theme.of(context).colorScheme.primaryContainer
-                  : Colors.transparent,
-              borderRadius: BorderRadius.circular(12),
-              border: Border.all(
+    return FittedBox(
+      fit: BoxFit.scaleDown,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: moods.map((mood) {
+          final isSelected = selectedMood == mood['value'];
+          return GestureDetector(
+            onTap: () => onMoodChanged(mood['value'] as int),
+            child: Container(
+              margin: const EdgeInsets.symmetric(horizontal: 4),
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
                 color: isSelected
-                    ? Theme.of(context).colorScheme.primary
+                    ? Theme.of(context).colorScheme.primaryContainer
                     : Colors.transparent,
-                width: 2,
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(
+                  color: isSelected
+                      ? Theme.of(context).colorScheme.primary
+                      : Colors.transparent,
+                  width: 2,
+                ),
+              ),
+              child: Text(
+                mood['emoji'] as String,
+                style: TextStyle(
+                  fontSize: isSelected ? 42 : 36,
+                ),
               ),
             ),
-            child: Text(
-              mood['emoji'] as String,
-              style: TextStyle(
-                fontSize: isSelected ? 48 : 40,
-              ),
-            ),
-          ),
-        );
-      }).toList(),
+          );
+        }).toList(),
+      ),
     );
   }
 }

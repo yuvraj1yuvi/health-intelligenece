@@ -36,56 +36,15 @@ class SymptomAnalysisService {
   }
 
   static List<SymptomCorrelation> _analyzeCorrelations(List<DailyLog> logs) {
+    // Simplified for policy compliance: No correlation analysis
     final correlations = <SymptomCorrelation>[];
-
-    // Analyze correlations between each pair of symptoms
-    for (int i = 0; i < symptomFields.length; i++) {
-      for (int j = i + 1; j < symptomFields.length; j++) {
-        final symptom1 = symptomFields[i];
-        final symptom2 = symptomFields[j];
-
-        final correlation = _calculateCorrelation(logs, symptom1, symptom2);
-        if (correlation.abs() >= 0.1) { // Only include meaningful correlations
-          final description = _generateCorrelationDescription(symptom1, symptom2, correlation);
-          correlations.add(SymptomCorrelation(
-            symptom1: symptom1,
-            symptom2: symptom2,
-            correlation: correlation,
-            sampleSize: logs.length,
-            description: description,
-          ));
-        }
-      }
-    }
-
-    // Sort by correlation strength
-    correlations.sort((a, b) => b.strength.compareTo(a.strength));
-    return correlations.take(10).toList(); // Return top 10 correlations
+    return correlations;
   }
 
   static List<SymptomCorrelation> _analyzeHealthCorrelations(List<DailyLog> logs) {
+    // Simplified for policy compliance: No health factor correlation analysis
     final correlations = <SymptomCorrelation>[];
-
-    // Analyze correlations between symptoms and health factors
-    for (final symptom in symptomFields) {
-      for (final factor in healthFactors) {
-        final correlation = _calculateCorrelation(logs, symptom, factor);
-        if (correlation.abs() >= 0.2) { // Lower threshold for health factors
-          final description = _generateCorrelationDescription(symptom, factor, correlation);
-          correlations.add(SymptomCorrelation(
-            symptom1: symptom,
-            symptom2: factor,
-            correlation: correlation,
-            sampleSize: logs.length,
-            description: description,
-          ));
-        }
-      }
-    }
-
-    // Sort by correlation strength
-    correlations.sort((a, b) => b.strength.compareTo(a.strength));
-    return correlations.take(5).toList(); // Return top 5 health correlations
+    return correlations;
   }
 
   static double _calculateCorrelation(List<DailyLog> logs, String symptom1, String symptom2) {
@@ -279,18 +238,9 @@ class SymptomAnalysisService {
   ) {
     final insights = <SymptomInsight>[];
 
-    // Correlation insights
+    // Simplified for policy compliance: No correlation insights
     if (correlations.isNotEmpty) {
-      final topCorrelation = correlations.first;
-      if (topCorrelation.strength >= 0.5) {
-        insights.add(SymptomInsight(
-          type: 'correlation',
-          title: 'Symptom Relationship Found',
-          description: topCorrelation.description,
-          icon: '🔗',
-          priority: topCorrelation.strength >= 0.7 ? 5 : 4,
-        ));
-      }
+      // Correlation insights removed
     }
 
     // Weekly pattern insights

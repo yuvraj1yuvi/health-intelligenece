@@ -44,7 +44,13 @@ class LogDetailsScreen extends StatelessWidget {
                       style: Theme.of(context).textTheme.titleLarge,
                     ),
                     const SizedBox(height: 20),
-                    Text(log.moodEmoji, style: const TextStyle(fontSize: 80)),
+                    Hero(
+                      tag: 'mood_${log.date.toIso8601String()}',
+                      child: Material(
+                        color: Colors.transparent,
+                        child: Text(log.moodEmoji, style: const TextStyle(fontSize: 80)),
+                      ),
+                    ),
                     const SizedBox(height: 8),
                     Text(
                       _getMoodLabel(log.mood),

@@ -6,6 +6,8 @@ import '../widgets/mood_picker.dart';
 import '../widgets/symptom_radio_group.dart';
 import '../widgets/pain_slider.dart';
 
+import 'package:confetti/confetti.dart';
+
 class LogSymptomsScreen extends StatefulWidget {
   final DailyLog? existingLog;
 
@@ -34,9 +36,12 @@ class _LogSymptomsScreenState extends State<LogSymptomsScreen> {
   late List<String> _activities;
   late List<String> _triggers;
 
+  late ConfettiController _confettiController;
+
   @override
   void initState() {
     super.initState();
+    _confettiController = ConfettiController(duration: const Duration(seconds: 3));
     _mood = widget.existingLog?.mood ?? 3;
     _headache = widget.existingLog?.headache ?? 0;
     _stress = widget.existingLog?.stress ?? 0;
@@ -59,7 +64,14 @@ class _LogSymptomsScreenState extends State<LogSymptomsScreen> {
   @override
   void dispose() {
     _notesController.dispose();
+    _confettiController.dispose();
     super.dispose();
+  }
+
+  void _checkGoals() {
+    if (_waterGlasses >= 8) {
+      _confettiController.play();
+    }
   }
 
   void _saveLog() async {
@@ -97,109 +109,169 @@ class _LogSymptomsScreenState extends State<LogSymptomsScreen> {
       appBar: AppBar(
         title: Text(widget.existingLog == null ? 'Log Symptoms' : 'Edit Log'),
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Card(
-              elevation: 2,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('How are you feeling?', style: Theme.of(context).textTheme.titleMedium),
-                    const SizedBox(height: 16),
-                    MoodPicker(
-                      selectedMood: _mood,
-                      onMoodChanged: (mood) => setState(() => _mood = mood),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            const SizedBox(height: 16),
-            Card(
-              elevation: 2,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SymptomRadioGroup(
-                      label: 'Headache',
-                      value: _headache,
-                      onChanged: (val) => setState(() => _headache = val),
-                    ),
-                    const Divider(height: 32),
-                    SymptomRadioGroup(
-                      label: 'Stress',
-                      value: _stress,
-                      onChanged: (val) => setState(() => _stress = val),
-                    ),
-                    const Divider(height: 32),
-                    SymptomRadioGroup(
-                      label: 'Fatigue',
-                      value: _fatigue,
-                      onChanged: (val) => setState(() => _fatigue = val),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            const SizedBox(height: 16),
-            Card(
-              elevation: 2,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: PainSlider(
-                  value: _painLevel,
-                  onChanged: (val) => setState(() => _painLevel = val),
-                ),
-              ),
-            ),
-            const SizedBox(height: 16),
-            Card(
-              elevation: 2,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('Notes', style: Theme.of(context).textTheme.titleMedium),
-                    const SizedBox(height: 12),
-                    TextField(
-                      controller: _notesController,
-                      maxLines: 4,
-                      decoration: InputDecoration(
-                        hintText: 'Any additional notes...',
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
+      body: Stack(
+        children: [
+          SingleChildScrollView(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Card(
+                  elevation: 2,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('How are you feeling?', style: Theme.of(context).textTheme.titleMedium),
+                        const SizedBox(height: 16),
+                        MoodPicker(
+                          selectedMood: _mood,
+                          onMoodChanged: (mood) => setState(() => _mood = mood),
                         ),
-                      ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
-              ),
-            ),
-            const SizedBox(height: 24),
-            ElevatedButton(
-              onPressed: _saveLog,
-              style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
+                const SizedBox(height: 16),
+                Card(
+                  elevation: 2,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SymptomRadioGroup(
+                          label: 'Headache',
+                          value: _headache,
+                          onChanged: (val) => setState(() => _headache = val),
+                        ),
+                        const Divider(height: 32),
+                        SymptomRadioGroup(
+                          label: 'Stress',
+                          value: _stress,
+                          onChanged: (val) => setState(() => _stress = val),
+                        ),
+                        const Divider(height: 32),
+                        SymptomRadioGroup(
+                          label: 'Fatigue',
+                          value: _fatigue,
+                          onChanged: (val) => setState(() => _fatigue = val),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-              ),
-              child: const Text('Save Log', style: TextStyle(fontSize: 16)),
+                const SizedBox(height: 16),
+                Card(
+                  elevation: 2,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: PainSlider(
+                      value: _painLevel,
+                      onChanged: (val) => setState(() => _painLevel = val),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 16),
+                // Water Intake Section
+                Card(
+                  elevation: 2,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text('Water Intake', style: Theme.of(context).textTheme.titleMedium),
+                            Text('$_waterGlasses glasses', style: Theme.of(context).textTheme.bodyLarge),
+                          ],
+                        ),
+                        const SizedBox(height: 12),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            IconButton(
+                              onPressed: () {
+                                if (_waterGlasses > 0) setState(() => _waterGlasses--);
+                              },
+                              icon: const Icon(Icons.remove_circle_outline),
+                              color: Colors.red,
+                            ),
+                            Icon(
+                              Icons.local_drink, 
+                              size: 40, 
+                              color: _waterGlasses >= 8 ? Colors.blue : Colors.blue.withOpacity(0.5)
+                            ),
+                            IconButton(
+                              onPressed: () {
+                                setState(() => _waterGlasses++);
+                                _checkGoals();
+                              },
+                              icon: const Icon(Icons.add_circle_outline),
+                              color: Colors.green,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 16),
+                Card(
+                  elevation: 2,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Notes', style: Theme.of(context).textTheme.titleMedium),
+                        const SizedBox(height: 12),
+                        TextField(
+                          controller: _notesController,
+                          maxLines: 4,
+                          decoration: InputDecoration(
+                            hintText: 'Any additional notes...',
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 24),
+                ElevatedButton(
+                  onPressed: _saveLog,
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  child: const Text('Save Log', style: TextStyle(fontSize: 16)),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+          Align(
+            alignment: Alignment.topCenter,
+            child: ConfettiWidget(
+              confettiController: _confettiController,
+              blastDirectionality: BlastDirectionality.explosive,
+              shouldLoop: false,
+              colors: const [Colors.green, Colors.blue, Colors.pink, Colors.orange, Colors.purple],
+            ),
+          ),
+        ],
       ),
     );
   }

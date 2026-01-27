@@ -33,7 +33,7 @@ class _InsightsScreenState extends State<InsightsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Symptom Insights'),
+        title: const Text('My Trends'),
         actions: [
           IconButton(
             icon: const Icon(Icons.refresh),
@@ -66,10 +66,7 @@ class _InsightsScreenState extends State<InsightsScreen> {
             _buildInsightsSection(),
             const SizedBox(height: 16),
           ],
-          if (_analysisResult!.correlations.isNotEmpty) ...[
-            _buildCorrelationsSection(),
-            const SizedBox(height: 16),
-          ],
+          // Correlations section removed for policy compliance
           if (_analysisResult!.weeklyPatterns.isNotEmpty) ...[
             _buildWeeklyPatternsSection(),
             const SizedBox(height: 16),

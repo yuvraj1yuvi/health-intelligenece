@@ -20,72 +20,15 @@ class AppLogo extends StatelessWidget {
           height: size,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [
-                const Color(0xFF10B981), // Emerald
-                const Color(0xFF047857), // Dark emerald
-              ],
+            image: const DecorationImage(
+              image: AssetImage('assets/images/health_logo.png'),
+              fit: BoxFit.cover,
             ),
             boxShadow: [
               BoxShadow(
-                color: const Color(0xFF10B981).withOpacity(0.3),
+                color: Colors.black.withOpacity(0.2),
                 blurRadius: 8,
                 offset: const Offset(0, 4),
-              ),
-            ],
-          ),
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              // Heart symbol
-              Icon(
-                Icons.favorite,
-                color: Colors.white.withOpacity(0.9),
-                size: size * 0.4,
-              ),
-              // Data visualization overlay
-              Positioned(
-                bottom: size * 0.15,
-                right: size * 0.15,
-                child: Container(
-                  width: size * 0.25,
-                  height: size * 0.15,
-                  decoration: BoxDecoration(
-                    color: const Color(0xFFF59E0B), // Amber accent
-                    borderRadius: BorderRadius.circular(size * 0.02),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: List.generate(
-                      3,
-                      (index) => Container(
-                        width: size * 0.04,
-                        height: size * 0.08,
-                        color: const Color(0xFFEC4899).withOpacity(0.8), // Rose accent
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              // Intelligence spark
-              Positioned(
-                top: size * 0.15,
-                left: size * 0.15,
-                child: Container(
-                  width: size * 0.15,
-                  height: size * 0.15,
-                  decoration: const BoxDecoration(
-                    color: Color(0xFF06B6D4), // Cyan accent
-                    shape: BoxShape.circle,
-                  ),
-                  child: Icon(
-                    Icons.insights,
-                    color: Colors.white,
-                    size: size * 0.08,
-                  ),
-                ),
               ),
             ],
           ),
