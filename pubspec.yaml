@@ -1,7 +1,7 @@
 name: daily_symptoms_tracker
-description: A comprehensive health intelligence platform with AI-powered symptom analysis, personalized insights, goal tracking, and wellness correlations.
+description: A daily lifestyle log for tracking habits, symptoms, and wellness trends.
 publish_to: 'none'
-version: 1.0.1+7
+version: 1.0.1+8
 
 environment:
   sdk: '>=3.0.0 <4.0.0'
