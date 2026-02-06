@@ -91,10 +91,10 @@ class DailyLog extends HiveObject {
   }
 
   String get symptomSummary {
-    List<String> symptoms = [];
-    if (headache > 0) symptoms.add('Headache $headache');
-    if (stress > 0) symptoms.add('Stress $stress');
-    if (fatigue > 0) symptoms.add('Fatigue $fatigue');
-    return symptoms.isEmpty ? 'No symptoms' : symptoms.join(' • ');
+    List<String> entries = [];
+    if (headache > 0) entries.add('Head Discomfort $headache');
+    if (stress > 0) entries.add('Stress $stress');
+    if (fatigue > 0) entries.add('Tiredness $fatigue');
+    return entries.isEmpty ? 'No entries' : entries.join(' • ');
   }
 }

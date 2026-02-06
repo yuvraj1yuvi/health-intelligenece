@@ -18,7 +18,7 @@ class PainSlider extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text('Pain Level', style: Theme.of(context).textTheme.titleMedium),
+            Text('Discomfort Level', style: Theme.of(context).textTheme.titleMedium),
             Text(
               value.toInt().toString(),
               style: Theme.of(context).textTheme.titleLarge?.copyWith(

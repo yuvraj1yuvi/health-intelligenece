@@ -149,7 +149,7 @@ class HomeScreen extends StatelessWidget {
                                   );
                                 },
                                 icon: const Icon(Icons.add),
-                                label: const Text('Log Today\'s Symptoms'),
+                                label: const Text('Add Daily Entry'),
                                 style: ElevatedButton.styleFrom(
                                   padding: const EdgeInsets.symmetric(
                                       vertical: 14, horizontal: 24),

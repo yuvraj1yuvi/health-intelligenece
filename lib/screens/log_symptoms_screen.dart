@@ -107,7 +107,7 @@ class _LogSymptomsScreenState extends State<LogSymptomsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.existingLog == null ? 'Log Symptoms' : 'Edit Log'),
+        title: Text(widget.existingLog == null ? 'Daily Check-In' : 'Edit Entry'),
       ),
       body: Stack(
         children: [
@@ -144,7 +144,7 @@ class _LogSymptomsScreenState extends State<LogSymptomsScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SymptomRadioGroup(
-                          label: 'Headache',
+                          label: 'Head Discomfort',
                           value: _headache,
                           onChanged: (val) => setState(() => _headache = val),
                         ),
@@ -156,7 +156,7 @@ class _LogSymptomsScreenState extends State<LogSymptomsScreen> {
                         ),
                         const Divider(height: 32),
                         SymptomRadioGroup(
-                          label: 'Fatigue',
+                          label: 'Tiredness',
                           value: _fatigue,
                           onChanged: (val) => setState(() => _fatigue = val),
                         ),
@@ -257,7 +257,7 @@ class _LogSymptomsScreenState extends State<LogSymptomsScreen> {
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
-                  child: const Text('Save Log', style: TextStyle(fontSize: 16)),
+                  child: const Text('Save Entry', style: TextStyle(fontSize: 16)),
                 ),
               ],
             ),
